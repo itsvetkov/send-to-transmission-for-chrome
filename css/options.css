@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+dl.attributes.options {
+    width: 50em;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 0.8em;
+    background-color: whitesmoke;
+}
+
+dl.attributes.options>dt {
+    width: 9em;
+    line-height: 1.5em;
+}
+
+dl.attributes.options>dd {
+    margin-left: 10em;
+    margin-bottom: 0.5em;
+    line-height: 1.5em;
+}
+
+/* Transmission Session Info */
+dl.attributes.options>dd.unavailable {
+    color: grey;
+}
+
+/* Buttons */
+dl.attributes.options>dd:last-child {
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+dl.attributes.options>dd:last-child div#message-container {
+    margin: 1.2em 19.5em 0.2em 0;
+}
+
+dl.attributes.options>dd:last-child div#message {
+    height: 1.6em;
+    padding: 0 0.8em;
+    line-height: 1.6em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-radius: 0.8em;
+}
+
+.show {
+    opacity: 1.0;
+    -webkit-transition: opacity 0.2s;
+}
+
+.hide {
+    opacity: 0.0;
+    -webkit-transition: opacity 0.5s ease 5s;
+}
+
+.success {
+    color: white;
+    background-color: olivedrab;
+}
+
+.failure {
+    color: white;
+    background-color: indianred;
+}
+
+dl.attributes.options>dd:last-child div.buttons {
+    float: right;
+    margin-top: -0.2em;
+    z-index: 1;
+}
+
+dl.attributes.options>dd:last-child button {
+    width: 6em;
+    margin-left: 0.5em;
+}
+
+#server {
+    width: 40em;
+}
+
+#username,#password {
+    width: 10em;
+}
+
+table.locations {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    line-height: 1.5em;
+    width: 100%;
+}
+
+table.locations>colgroup>col:first-child {
+    width: 10.5em;
+}
+
+table.locations>colgroup>col:last-child {
+    width: 5.5em;
+}
+
+table.locations th,table.locations td {
+    padding: 0;
+    padding-right: 0.5em;
+}
+
+table.locations th:last-child,table.locations td:last-child {
+    padding-right: 0;
+}
+
+table.locations th {
+    text-align: left;
+    font: inherit;
+    padding-bottom: 0.5em;
+}
+
+table.locations>tbody>tr>td {
+    padding-bottom: 0.5em;
+}
+
+table.locations input {
+    width: 100%;
+}
+
+table.locations div.button {
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    margin-left: 0.5em;
+    padding: 0;
+    width: 1.5em;
+    height: 1.5em;
+    float: left;
+    background-size: 1em 1em;
+    background-repeat: no-repeat;
+    background-position: 0.25em 0.25em;
+}
+
+table.locations div.button:first-child {
+    margin-left: 0em;
+}
+
+table.locations div.button.add {
+    background-image: url("../images/check.svg");
+}
+
+table.locations div.button.add:hover {
+    background-image: url("../images/check-hover.svg");
+}
+
+table.locations div.button.up {
+    background-image: url("../images/arrow-up.svg");
+}
+
+table.locations>tbody>tr:first-child div.button.up {
+    visibility: hidden;
+}
+
+table.locations div.button.up:hover {
+    background-image: url("../images/arrow-up-hover.svg");
+}
+
+table.locations div.button.down {
+    background-image: url("../images/arrow-down.svg");
+}
+
+table.locations>tbody>tr:last-child div.button.down {
+    visibility: hidden;
+}
+
+table.locations div.button.down:hover {
+    background-image: url("../images/arrow-down-hover.svg");
+}
+
+table.locations div.button.remove {
+    background-image: url("../images/cross.svg");
+}
+
+table.locations div.button.remove:hover {
+    background-image: url("../images/cross-hover.svg");
+}

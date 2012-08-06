@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+    padding: 1em;
+    font-family: sans-serif;
+}
+
+input,select,button {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+input[type=text],input[type=password],select {
+    display: block;
+    box-sizing: border-box;
+    height: 1.5em;
+    border: 1px solid #A0A09F;
+    border-radius: 3px;
+}
+
+input[type=text],input[type=password] {
+    padding: 0 0.3em;
+}
+
+button {
+    height: 2em;
+}
+
+dl.attributes {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+dl.attributes>dt {
+    display: block;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+dl.attributes>dd {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+dl.tabs {
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+dl.tabs>dt {
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+dl.tabs>dd {
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}

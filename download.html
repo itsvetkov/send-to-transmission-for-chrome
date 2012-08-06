@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/download.css">
+
+<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="lib/spin.min.js"></script>
+
+<script type="text/javascript" src="script/bencode.js"></script>
+<script type="text/javascript" src="script/torrent.js"></script>
+<script type="text/javascript" src="script/transmission.js"></script>
+<script type="text/javascript" src="script/settings.js"></script>
+<script type="text/javascript" src="script/download.js"></script>
+
+<title>Download Torrent with Transmission</title>
+</head>
+<body>
+
+	<h1 id="torrent-name"></h1>
+	<dl class="tabs">
+		<dt>Files</dt>
+		<dd>
+			<div id="filelist-header">
+				<span class="check"><input id="filelist-all" type="checkbox"
+					checked></span><span class="size"><input
+					id="filelist-filter" class="filter" type="text"
+					placeholder="Filter"><span class="files">Files</span>Size</span><span
+					class="name">Name</span>
+			</div>
+			<div id="filelist-container">
+				<ul id="filelist"></ul>
+			</div>
+			<div id="filelist-footer">
+				<span class="size"><span id="filelist-total-size">0&#x2009;/&#x2009;0</span><span
+					id="filelist-total-symbol" class="symbol">bytes</span><span
+					id="filelist-total-files" class="files">0&#x2009;/&#x2009;0</span></span><span
+					class="name">Selected&#x2009;/&#x2009;Total</span>
+			</div>
+		</dd>
+		<dt>Torrent</dt>
+		<dd>
+			<dl class="attributes info">
+				<dt class="hidden">Size:</dt>
+				<dd id="attr-size" class="hidden"></dd>
+				<dt class="hidden">Trackers:</dt>
+				<dd class="hidden">
+					<ul id="attr-announce"></ul>
+				</dd>
+				<dt class="hidden">Date:</dt>
+				<dd id="attr-date" class="hidden"></dd>
+				<dt class="hidden">Comment:</dt>
+				<dd id="attr-comment" class="hidden"></dd>
+				<dt class="hidden">Created by:</dt>
+				<dd id="attr-creator" class="hidden"></dd>
+			</dl>
+		</dd>
+	</dl>
+
+	<div class="footer">
+		<dl class="attributes parameters">
+			<dt>
+				<label for="params-location">Download to:</label>
+			</dt>
+			<dd>
+				<select id="params-location"></select>
+			</dd>
+			<dd>
+				<input id="params-path" type="text" placeholder="Download path">
+			</dd>
+		</dl>
+
+		<div class="controls">
+			<button id="start" title="Start downloading now">Start</button>
+			<button id="add" title="Add torrent in paused state">Add</button>
+			<button id="close">Close</button>
+		</div>
+	</div>
+
+	<div id="modal">
+		<div id="message">
+			<div id="message-header"></div>
+			<div id="message-text"></div>
+			<div id="message-controls">
+				<button type="button" name="ok">OK</button>
+				<button type="button" name="cancel">Cancel</button>
+				<button type="button" name="close">Close</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

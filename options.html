@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/options.css">
+
+<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="lib/spin.min.js"></script>
+
+<script type="text/javascript" src="script/settings.js"></script>
+<script type="text/javascript" src="script/transmission.js"></script>
+<script type="text/javascript" src="script/options.js"></script>
+
+<title>Options for Download with Transmission</title>
+</head>
+<body>
+
+	<dl class="attributes options">
+		<dt>
+			<label for="server">Server:</label>
+		</dt>
+		<dd>
+			<input id="server" type="text">
+		</dd>
+		<dt>
+			<label for="username">Username:</label>
+		</dt>
+		<dd>
+			<input id="username" type="text">
+		</dd>
+		<dt>
+			<label for="password">Password:</label>
+		</dt>
+		<dd>
+			<input id="password" type="password">
+		</dd>
+
+		<dt>Server version:</dt>
+		<dd id="version" class="unavailable">Unavailable</dd>
+
+		<dt>Download locations:</dt>
+		<dd>
+			<table class="locations">
+				<colgroup>
+					<col>
+					<col>
+					<col>
+				</colgroup>
+				<tfoot>
+					<tr>
+						<td><input id="new-label" type="text" placeholder="Label"></td>
+						<td><input id="new-path" type="text" placeholder="Path"></td>
+						<td><div id="new-location" class="button add"></div></td>
+					</tr>
+				</tfoot>
+				<tbody id="locations"></tbody>
+			</table>
+		</dd>
+
+		<dd>
+			<div class="buttons">
+				<button id="test">Test</button>
+				<button id="save">Save</button>
+				<button id="close">Close</button>
+			</div>
+			<div id="message-container" class="hide">
+				<div id="message" class="show">Settings saved</div>
+			</div>
+		</dd>
+	</dl>
+
+</body>
+</html>

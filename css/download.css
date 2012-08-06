@@ -1,0 +1,432 @@
+@charset "utf-8";
+
+body {
+    overflow: hidden;
+    background-color: whitesmoke;
+}
+
+/* Header */
+h1#torrent-name {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 6em;
+    z-index: 1;
+    margin: 0.2em 0.66667em 0;
+    padding: 0;
+    height: 2em;
+    line-height: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+/* Customizing tabs */
+dl.tabs {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    top: 1em;
+    bottom: 8.5em;
+}
+
+dl.tabs>dt {
+    float: right;
+    margin-left: 0.5em;
+    padding: 0 0.8em;
+    height: 1.6em;
+    line-height: 1.6em;
+    border-radius: 0.8em;
+    background-color: lightgrey;
+    font-weight: bold;
+}
+
+dl.tabs>dd {
+    top: 2.6em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+dl.tabs>dt.selected {
+    cursor: auto;
+    background-color: orange;
+}
+
+dl.tabs>dt:hover {
+    background-color: orange;
+}
+
+/* Files tab, file list */
+#filelist-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1.5em;
+    bottom: 1.5em;
+    margin-top: 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #a0a09f;
+    border-radius: 3px;
+    background-color: white;
+}
+
+#filelist-container ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#filelist-container>ul {
+    background-image: url("../images/list-background.svg");
+    background-size: 1.5em 3em;
+}
+
+#filelist-container>ul ul {
+    padding-left: 1.5em;
+}
+
+#filelist-container ul>li,#filelist-header,#filelist-footer {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+#filelist-container ul>li>label {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+#filelist-container ul>li>label span,#filelist-header span,#filelist-footer span
+    {
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.5em;
+    height: 1.5em;
+}
+
+#filelist-container ul>li>label span.check,#filelist-header span.check {
+    float: left;
+    width: 1.8em;
+}
+
+#filelist-container ul>li>label span.check input,#filelist-header span.check input
+    {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#filelist-container ul>li.directory.collapsed>ul {
+    display: none;
+}
+
+#filelist-container ul>li.directory>label span.check {
+    margin-right: -0.3em;
+}
+
+#filelist-container ul>li.directory>label span.expand {
+    cursor: pointer;
+    float: left;
+    width: 1.8em;
+    background-image: url("../images/triangle-down.svg");
+    background-size: 0.8em;
+    background-repeat: no-repeat;
+    background-position: 0.5em 0.35em;
+}
+
+#filelist-container ul>li.directory>label span.expand:hover {
+    background-image: url("../images/triangle-down-hover.svg");
+}
+
+#filelist-container ul>li.directory.collapsed>label span.expand {
+    background-image: url("../images/triangle-left.svg");
+}
+
+#filelist-container ul>li.directory.collapsed>label span.expand:hover {
+    background-image: url("../images/triangle-left-hover.svg");
+}
+
+/* #filelist-container ul>li>label span.name,#filelist-header span.name,#filelist-footer span.name {} */
+#filelist-container ul>li>label span.size,#filelist-header span.size,#filelist-footer span.size
+    {
+    float: right;
+    width: 10.5em;
+    text-align: right;
+}
+
+#filelist-container ul>li.directory>label span.size,#filelist-footer span.size {
+    color: grey;
+    width: 15.5em;
+}
+
+#filelist-container ul>li.directory>label span.files,#filelist-header span.files,#filelist-footer span.files
+    {
+    float: left;
+    width: 5em;
+    text-align: right;
+}
+
+#filelist-container ul>li>label span.symbol,#filelist-header span.symbol,#filelist-footer span.symbol
+    {
+    float: right;
+    margin-left: 0.5em;
+    width: 3em;
+    text-align: left;
+}
+
+/* Files tab, file list header */
+#filelist-header,#filelist-footer {
+    font-weight: bold;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+#filelist-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#filelist-header>span {
+    padding-top: 1px;
+}
+
+/* #filelist-header span.check {} */
+
+/* #filelist-header span.name {} */
+#filelist-footer span.name {
+    padding-left: 1.8em;
+}
+
+#filelist-header span.size {
+    padding-right: 3.5em;
+    width: 24em;
+    padding-left: 2px;
+}
+
+#filelist-footer span.size {
+    color: inherit;
+}
+
+#filelist-footer span#filelist-total-size {
+    display: inline;
+    height: auto;
+}
+
+#filelist-header input.filter {
+    box-sizing: content-box;
+    display: block;
+    float: left;
+    padding: 0 0.3em;
+    margin: 0;
+    margin-left: -2px;
+    height: 1.5em;
+    width: 11.4em;
+    line-height: 1.5em;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-weight: normal;
+}
+
+#filelist-header input.filter:focus {
+    outline: none;
+}
+
+/* #filelist-header span.unit {} */
+
+/* Info tab */
+dl.attributes.info {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 1em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #a0a09f;
+    border-radius: 3px;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+dl.attributes.info>dt {
+    width: 23%;
+}
+
+dl.attributes.info>dd {
+    margin-left: 25%;
+    margin-bottom: 0.5em;
+}
+
+dl.attributes.info>dd:last-child {
+    margin-bottom: 0em;
+}
+
+dl.attributes.info>dt.hidden,dl.attributes.info>dd.hidden {
+    display: none;
+}
+
+/* Announce list */
+ul#attr-announce {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul#attr-announce>li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Magnet tab, topics list */
+#topics-container {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #a0a09f;
+    border-radius: 3px;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+/* Footer */
+div.footer {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    bottom: 1em;
+}
+
+/* Download location */
+dl.attributes.parameters>dt {
+    line-height: 1.5em;
+    width: 18%;
+}
+
+dl.attributes.parameters>dd {
+    line-height: 1.5em;
+    margin-left: 20%;
+    margin-bottom: 0.5em;
+}
+
+dl.attributes.parameters>dd:last-child {
+    margin-bottom: 1em;
+}
+
+dl.attributes.parameters>dd>input[type=text],dl.attributes.parameters>dd>select
+    {
+    width: 100%;
+}
+
+/* Control buttons */
+div.controls {
+    text-align: right;
+}
+
+div.controls>button {
+    width: 6em;
+    margin-left: 0.5em;
+}
+
+/* Modal block */
+#modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+/* Modal message */
+#message {
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    margin-left: -15em;
+    margin-top: -6em;
+    padding: 1em;
+    width: 28em;
+    height: 10em;
+    border-radius: 0.8em;
+    background-color: orange;
+}
+
+#message.green {
+    background-color: olivedrab;
+}
+
+#message.error {
+    background-color: indianred;
+}
+
+#message-header {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 1.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 150%;
+    font-weight: bold;
+    color: white;
+}
+
+#message-text {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 4.6em;
+    overflow: hidden;
+    color: white;
+}
+
+#message-controls {
+    display: block;
+    margin: 0;
+    margin-top: 1em;
+    padding: 0em;
+    height: 2em;
+    text-align: right;
+}
+
+#message-controls button {
+    margin: 0;
+    margin-left: 0.5em;
+    height: 2em;
+    width: 6em;
+}
