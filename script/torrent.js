@@ -1,3 +1,5 @@
+/*global Bencode:false WebKitBlobBuilder:false*/
+
 /**
  * @constructor
  * @param {String} url
@@ -29,7 +31,7 @@ Torrent.prototype.loadBlob = function(callback) {
 
     var torrent = this;
     request.onload = function(event) {
-        if (this.status == 200) {
+        if (this.status === 200) {
             torrent._buffer = this.response;
             var blobBuilder = new WebKitBlobBuilder();
             blobBuilder.append(this.response);

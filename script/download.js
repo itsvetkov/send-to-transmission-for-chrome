@@ -1,6 +1,10 @@
-TXT_CUSTOM_LOCATION_LABEL = 'Custom';
+/*global Settings:false, Spinner:false, Torrent:false, Transmission:false*/
+
+var TXT_CUSTOM_LOCATION_LABEL = 'Custom';
 
 var Bytes = (function() {
+    /*jshint loopfunc:true*/
+    
     var symbols = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
     var names = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
     var classes = [];
@@ -22,6 +26,8 @@ var Bytes = (function() {
 
     var prototype = {
         convert: function(symbol) {
+            /*jshint newcap:false*/
+            
             return new symbol(this._bytes);
         },
         normalize: function() {
@@ -41,13 +47,13 @@ var Bytes = (function() {
         }
     };
 
-    for ( var i = 0, multiplier = 1; i < symbols.length; ++i, multiplier *= 1024) {
-        sizeClass = (function(multiplier) {
+    for (var i = 0, multiplier = 1; i < symbols.length; ++i, multiplier *= 1024) {
+        var sizeClass = (function(multiplier) {
             return function(bytes) {
                 this._bytes = bytes;
                 this._value = bytes / multiplier;
             };
-        })(multiplier);
+        }(multiplier));
 
         sizeClass.prototype = Object.create(prototype);
         sizeClass.prototype.constructor = sizeClass;
@@ -56,14 +62,14 @@ var Bytes = (function() {
             return function() {
                 return symbol;
             };
-        })(symbols[i]);
+        }(symbols[i]));
         sizeClass.prototype.getMultiplier = sizeClass.getMultiplier = (function(multiplier) {
             return function() {
                 return multiplier;
             };
-        })(multiplier);
+        }(multiplier));
 
-        if (i == 0) {
+        if (i === 0) {
             sizeClass.prototype.toFixed = function(digits) {
                 return this._value.toFixed();
             };
@@ -74,7 +80,7 @@ var Bytes = (function() {
     }
 
     return bytesNamespace;
-})();
+}());
 
 function LocationsController() {
     this._defaultPath = '';
@@ -103,10 +109,12 @@ function LocationsController() {
 LocationsController.prototype.showCustomPath = function(option) {
     option = option || this._select.options[this._select.selectedIndex];
     if (!option.classList.contains('custom')) {
-        if (option.classList.contains('default'))
+        if (option.classList.contains('default')) {
             this._input.value = this._defaultPath;
-        else
+        }
+        else {
             this._input.value = this._select.value;
+        }
     }
 };
 
@@ -120,10 +128,12 @@ LocationsController.prototype.showCustomPath = function(option) {
 LocationsController.prototype.appendLocation = function(location, selected) {
     var option = this._select.insertBefore(document.createElement('option'), this._optionCustom);
 
-    if (location.isDefault())
+    if (location.isDefault()) {
         option.classList.add('default');
-    else
+    }
+    else {
         option.value = location.getPath();
+    }
     option.text = location.getDescription();
 
     if (selected) {
@@ -135,18 +145,21 @@ LocationsController.prototype.appendLocation = function(location, selected) {
 LocationsController.prototype.setDefaultPath = function(path) {
     this._defaultPath = path.toString();
 
-    if (this._select.options[this._select.selectedIndex].classList.contains('default'))
+    if (this._select.options[this._select.selectedIndex].classList.contains('default')) {
         this._input.value = this._defaultPath;
+    }
 };
 
 LocationsController.prototype.getPath = function() {
     var option = this._select.options[this._select.selectedIndex];
 
-    if (option.classList.contains('custom'))
+    if (option.classList.contains('custom')) {
         return this._input.value;
+    }
 
-    if (option.classList.contains('default'))
+    if (option.classList.contains('default')) {
         return null;
+    }
 
     return option.value;
 };
@@ -197,7 +210,9 @@ var ElementProxy = (function() {
             label.appendChild(name);
             li.appendChild(label);
 
-            directory && li.appendChild(document.createElement('ul'));
+            if (directory) {
+                li.appendChild(document.createElement('ul'));
+            }
 
             return li;
         }
@@ -326,7 +341,9 @@ var ElementProxy = (function() {
 
         if (element.classList.contains('hidden')) {
             element.classList.remove('hidden');
-            element.previousElementSibling && element.previousElementSibling.classList.remove('hidden');
+            if (element.previousElementSibling) {
+                element.previousElementSibling.classList.remove('hidden');
+            }
         }
 
         element = document.getElementById('filelist-total-size');
@@ -354,7 +371,7 @@ var ElementProxy = (function() {
         Directory: Directory,
         RootDirectory: RootDirectory
     };
-})();
+}());
 
 function File(parent, data) {
     this._parent = parent;
@@ -378,7 +395,9 @@ File.prototype.getSize = function() {
 };
 
 File.prototype.addUnselectedIndicesTo = function(indices) {
-    !this._selected && indices.push(this._index);
+    if (!this._selected){
+        indices.push(this._index);
+    }
 };
 
 File.prototype.setSelectedState = function(selected) {
@@ -409,7 +428,7 @@ function Directory(parent, name) {
     this._selectedFiles = 0;
     this._selectedSize = 0;
 
-    this._proxy = new (this._parent ? ElementProxy.Directory : ElementProxy.RootDirectory)();
+    this._proxy = (this._parent) ? new ElementProxy.Directory() : new ElementProxy.RootDirectory();
     this._proxy.setName(this._name);
     this._proxy.listenCheckbox(this.whenChecked.bind(this));
 }
@@ -446,12 +465,15 @@ Directory.prototype.appendFile = function(data) {
 
 Directory.prototype.initializeTotals = function() {
     var sub;
-    for (name in this._directories) {
-        sub = this._directories[name];
-        sub.initializeTotals();
-
-        this._totalFiles += sub._totalFiles;
-        this._totalSize += sub._totalSize;
+    var isOwn = Object.prototype.hasOwnProperty;
+    for (var name in this._directories) {
+        if (isOwn.call(this._directories, name)) {
+            sub = this._directories[name];
+            sub.initializeTotals();
+    
+            this._totalFiles += sub._totalFiles;
+            this._totalSize += sub._totalSize;
+        }
     }
     this.setSelectionTotal(this._totalFiles, this._totalSize);
 };
@@ -460,25 +482,27 @@ Directory.prototype.setSelectionTotal = function(files, size) {
     this._selectedFiles = files;
     this._selectedSize = size;
 
-    this._proxy.setChecked(this._totalFiles == this._selectedFiles);
+    this._proxy.setChecked(this._totalFiles === this._selectedFiles);
     this._proxy.setFiles(this._totalFiles, this._selectedFiles);
     this._proxy.setSize(this._totalSize, this._selectedSize);
 };
 
 Directory.prototype.updateSelectionTotal = function(files, size) {
     this.setSelectionTotal(this._selectedFiles + files, this._selectedSize + size);
-    this._parent && this._parent.updateSelectionTotal(files, size);
+    if (this._parent) {
+        this._parent.updateSelectionTotal(files, size);
+    }
 };
 
 Directory.prototype.setSelectedState = function(selected) {
-    for ( var i = 0, child; child = this._children[i]; ++i) {
+    for (var i = 0, child; (child = this._children[i]); ++i) {
         child.setSelectedState(selected);
     }
     this.setSelectionTotal(selected ? this._totalFiles : 0, selected ? this._totalSize : 0);
 };
 
 Directory.prototype.addUnselectedIndicesTo = function(indices) {
-    for ( var i = 0, child; child = this._children[i]; ++i) {
+    for (var i = 0, child; (child = this._children[i]); ++i) {
         child.addUnselectedIndicesTo(indices);
     }
 };
@@ -505,9 +529,10 @@ function FileTreeController() {
 FileTreeController.prototype.appendFile = function(data) {
     var directory = this._filetree;
     var path = data.path;
-    var name;
-    while (name = path.shift(), path.length > 0) {
+    var name = path.shift();
+    while (path.length > 0) {
         directory = directory.getSubDirectory(name) || directory.appendDirectory(name);
+        name = path.shift();
     }
     data.name = name;
     directory.appendFile(data);
@@ -538,8 +563,8 @@ function PageController() {
     this._transmission = new Transmission(this._settings.server, this._settings.usename, this._settings.password);
 
     var locations = this._settings.locations;
-    for ( var i = 0, location; location = locations[i]; ++i) {
-        this._locationsController.appendLocation(location, i == 0);
+    for ( var i = 0, location; (location = locations[i]); ++i) {
+        this._locationsController.appendLocation(location, i === 0);
     }
 
     var controller = this;
@@ -666,10 +691,12 @@ PageController.prototype.processTorrent = function(torrent) {
     $('#torrent-name').text(name);
     $('#torrent-name').attr('title', name);
 
-    if (torrent['announce-list'])
+    if (torrent['announce-list']) {
         this.showTrackers(Array.prototype.concat.apply([], torrent['announce-list']));
-    else if (torrent['announce'])
+    }
+    else if (torrent['announce']) {
         this.showTrackers([torrent['announce']]);
+    }
 
     if (torrent['comment']) {
         $('#attr-comment').text(torrent['comment']);
@@ -687,7 +714,7 @@ PageController.prototype.processTorrent = function(torrent) {
     }
 
     if (torrent.info.files) {
-        for ( var i = 0, file; file = torrent.info.files[i]; ++i) {
+        for ( var i = 0, file; (file = torrent.info.files[i]); ++i) {
             this._fileTreeController.appendFile({
                 path: file.path,
                 index: i,
@@ -710,26 +737,29 @@ PageController.prototype.processTorrent = function(torrent) {
 PageController.prototype.addTorrent = function(torrent, paused) {
     this.showModalProgressSpinner();
 
-    var arguments = Transmission.customizeAddTorrent(this._locationsController.getPath(), paused,
+    var args = Transmission.customizeAddTorrent(this._locationsController.getPath(), paused,
                                                      this._fileTreeController.getUnselectedIndices());
 
     var controller = this;
 
-    this._transmission.addTorrent(torrent, arguments, function(result) {
-        if (result instanceof Transmission.Success)
+    this._transmission.addTorrent(torrent, args, function(result) {
+        if (result instanceof Transmission.Success) {
             controller.showModalMessage('Torrent added', 'Torrent was successfully added to Transmission', 'green',
                                         ['close'], [function() {
                                             window.close();
                                         }]);
-        else if (result instanceof Transmission.Failure && result == 'duplicate torrent')
+        }
+        else if (result instanceof Transmission.Failure && result === 'duplicate torrent') {
             controller.showModalMessage('Duplicate torrent', 'This torrent has been already added to Transmission.',
                                         'error', ['close'], [function() {
                                             window.close();
                                         }]);
-        else
+        }
+        else {
             controller.showModalMessage('Error', 'Torrent addition failed', 'error', ['close'], [function() {
                 window.close();
             }]);
+        }
     });
 };
 
@@ -739,4 +769,4 @@ PageController.prototype.addTorrent = function(torrent, paused) {
     $(document).ready(function() {
         controller = new PageController();
     });
-})();
+}());

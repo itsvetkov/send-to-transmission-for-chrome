@@ -1,3 +1,5 @@
+/*global Location:false, Settings:false, Transmission:false*/
+
 var TXT_SETTINGS_SAVED = 'Settings saved';
 var TXT_SERVER_OK = 'Server settings are OK';
 var TXT_SERVER_FAILURE = 'Server is not responding';
@@ -49,15 +51,19 @@ var ElementProxy = (function() {
             'default': generateTemplate(false),
             'custom': generateTemplate(true)
         };
-    })();
+    }());
 
     function DefaultPath(element, label, path) {
         this._element = (element != null) ? element : template['default'].cloneNode(true);
         this._label = this._element.childNodes[0].childNodes[0];
         this._path = this._element.childNodes[1].childNodes[0];
 
-        label !== undefined && this.setLabel(label);
-        path !== undefined && this.setPath(path);
+        if (label !== undefined) {
+            this.setLabel(label);
+        }
+        if (path !== undefined) {
+            this.setPath(path);
+        }
     }
 
     DefaultPath.prototype.getLabel = function() {
@@ -115,8 +121,12 @@ var ElementProxy = (function() {
     };
 
     function CustomPath(element, label, path) {
-        arguments[0] == null && (arguments[0] = template['custom'].cloneNode(true));
-        DefaultPath.apply(this, arguments);
+        var args = arguments;
+        
+        if (args[0] == null) {
+            args[0] = template['custom'].cloneNode(true);
+        }
+        DefaultPath.apply(this, args);
     }
 
     CustomPath.prototype = Object.create(DefaultPath.prototype);
@@ -124,8 +134,9 @@ var ElementProxy = (function() {
 
     CustomPath.prototype.setLocation = function(location) {
         this.setLabel(location.getLabel());
-        if (!location.isDefault())
+        if (!location.isDefault()) {
             this.setPath(location.getPath());
+        }
     };
 
     CustomPath.prototype.getLocation = function() {
@@ -140,7 +151,7 @@ var ElementProxy = (function() {
         DefaultPath: DefaultPath,
         CustomPath: CustomPath
     };
-})();
+}());
 
 function LocationsController() {
     this._defaultPath = null;
@@ -161,8 +172,9 @@ LocationsController.prototype.addLocation = function() {
     var path = inputPath.value;
 
     /* TODO Perfom advanced input check and feedback */
-    if (!label || !path)
+    if (!label || !path) {
         return;
+    }
 
     this.appendLocation(new Location(label, path));
     inputLabel.value = '';
@@ -170,7 +182,7 @@ LocationsController.prototype.addLocation = function() {
 };
 
 LocationsController.prototype.appendLocation = function(location) {
-    var proxy = new (location.isDefault() ? ElementProxy.DefaultPath : ElementProxy.CustomPath)(null);
+    var proxy = (location.isDefault()) ? new ElementProxy.DefaultPath() : new ElementProxy.CustomPath();
 
     proxy.setLocation(location);
     proxy.appendTo(this._container);
@@ -205,17 +217,19 @@ LocationsController.prototype.appendLocation = function(location) {
         });
     } else {
         this._defaultPathProxy = proxy;
-        if (this._defaultPath != null)
+        if (this._defaultPath != null) {
             proxy.setPath(this._defaultPath);
+        }
     }
-
+    
     this._proxies.push(proxy);
 };
 
 LocationsController.prototype.setDefaultPath = function(path) {
     this._defaultPath = path.toString();
-    if (this._defaultPathProxy)
+    if (this._defaultPathProxy) {
         this._defaultPathProxy.setPath(this._defaultPath);
+    }
 };
 
 LocationsController.prototype.getLocations = function() {
@@ -237,7 +251,7 @@ function PageController() {
     $('#username').val(this._settings.username);
     $('#password').val(this._settings.password);
 
-    for ( var i = 0, location; location = this._settings.locations[i]; ++i) {
+    for ( var i = 0, location; (location = this._settings.locations[i]); ++i) {
         this._locationsController.appendLocation(location);
     }
 
@@ -261,10 +275,12 @@ function PageController() {
 PageController.prototype.showMessage = function(text, style) {
     var message = $('#message');
 
-    if (message.hasClass('show'))
+    if (message.hasClass('show')) {
         message.removeClass().addClass('hide');
-    else
+    }
+    else {
         message.removeClass().addClass('show');
+    }
     message.addClass(style).text(text);
 
     $('#message-container').toggleClass('show').toggleClass('hide');
@@ -306,4 +322,4 @@ PageController.prototype.saveSettings = function() {
     $(document).ready(function() {
         controller = new PageController();
     });
-})();
+}());

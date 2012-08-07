@@ -13,11 +13,11 @@ function parseMagnet(magnet) {
     var name;
     var value;
     
-    while (match = paramExpr.exec(magnet)) {
+    while ((match = paramExpr.exec(magnet))) {
         name = decodeURIComponent(match[1]);
         value = decodeURIComponent(match[2]);
         magnet = magnet.slice(match[0].length);
-        if (match = indexExpr.exec(name)) {
+        if ((match = indexExpr.exec(name))) {
             name = match[1];
             index = parseInt(match[2], 10);
             topic = map[index];
@@ -25,7 +25,10 @@ function parseMagnet(magnet) {
                 topics.push(topic = map[index] = []);
             }
         } else {
-            topic = defaultTopic || (topics.push(defaultTopic = []), defaultTopic);
+            topic = defaultTopic;
+            if (!topic) {
+                topics.push(topic = defaultTopic = []);
+            }
         }
         topic.push({
             name: name,

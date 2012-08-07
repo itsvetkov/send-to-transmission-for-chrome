@@ -24,7 +24,9 @@ var Bencode = {
             if (options.dictionary != null) {
                 if (key in options.dictionary) {
                     options.dictionary = options.dictionary[key];
-                    options.dictionary == null && (options.state = !options.defaultState);
+                    if (options.dictionary == null) {
+                        options.state = !options.defaultState;
+                    }
                 } else {
                     options.dictionary = null;
                 }
@@ -34,15 +36,18 @@ var Bencode = {
 
         var popItemOption = function(options) {
             options.dictionary = options.parents.pop();
-            options.dictionary != null && (options.state = options.defaultState);
+            if (options.dictionary != null) {
+                options.state = options.defaultState;
+            }
             return options.state;
         };
 
         var decodeItem = function() {
             var ch = source.charCodeAt(position);
 
-            if (ch >= 0x30 && ch <= 0x39) // /\d/
+            if (ch >= 0x30 && ch <= 0x39) { // /\d/
                 return decodeString();
+            }
 
             switch (ch) {
                 case 0x69: // /i/
@@ -52,11 +57,13 @@ var Bencode = {
                 case 0x64: // /d/
                     return decodeDictionary();
                 default:
-                    throw Error('Wrong type symbol');
+                    throw new Error('Wrong type symbol');
             }
         };
 
         var decodeString = function() {
+            /*jshint bitwise:false*/
+            
             var col = source.indexOf(':', position + 1);
             var len = parseInt(source.slice(position, col), 10);
             var end = col + len + 1;
@@ -93,8 +100,9 @@ var Bencode = {
                 }
             }
 
-            if (position != end)
-                throw Error('Wrong string encoding');
+            if (position !== end) {
+                throw new Error('Wrong string encoding');
+            }
 
             return result;
         };
@@ -113,7 +121,7 @@ var Bencode = {
             var list = skip ? null : [];
             var item;
             ++position;
-            while (source.charAt(position) != 'e') {
+            while (source.charAt(position) !== 'e') {
                 item = decodeItem();
                 if (!skip) {
                     list.push(item);
@@ -127,7 +135,7 @@ var Bencode = {
             var dictionary = skip ? null : {};
             var key, item;
             ++position;
-            while (source.charAt(position) != 'e') {
+            while (source.charAt(position) !== 'e') {
                 key = decodeString();
                 skip = pushItemOption(skipOption, key);
                 utf = pushItemOption(utfOption, key);

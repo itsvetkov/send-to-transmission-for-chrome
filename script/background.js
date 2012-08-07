@@ -1,3 +1,5 @@
+/*global chrome:false*/
+
 (function() {
 
     chrome.contextMenus.create({
@@ -8,14 +10,15 @@
                 url: 'download.html#' + info.linkUrl,
                 type: 'popup',
                 width: 700,
-                height: 700,
+                height: 700
             });
         }
     });
 
-    if (typeof localStorage.verConfig === 'undefined' || localStorage.verConfig < 5)
+    if (typeof localStorage.verConfig === 'undefined' || localStorage.verConfig < 5) {
         chrome.tabs.create({
             url: 'options.html'
         });
+    }
 
-})();
+}());

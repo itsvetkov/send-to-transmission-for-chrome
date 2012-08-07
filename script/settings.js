@@ -4,7 +4,7 @@ function Location(label, path) {
 }
 
 Location.prototype.isDefault = function() {
-	return this._path == '';
+	return this._path === '';
 };
 
 Location.prototype.getLabel = function() {
@@ -25,10 +25,18 @@ Location.prototype.getPath = function() {
 
 function Settings() {
     if (typeof localStorage.verConfig === 'undefined' || localStorage.verConfig < 5) {
-        if (typeof localStorage.server === 'undefined') localStorage.server = 'http://localhost:9091/transmission/rpc';
-        if (typeof localStorage.username === 'undefined') localStorage.username = '';
-        if (typeof localStorage.password === 'undefined') localStorage.password = '';
-        if (typeof localStorage.locations === 'undefined') localStorage.locations = '[]';
+        if (typeof localStorage.server === 'undefined') {
+            localStorage.server = 'http://localhost:9091/transmission/rpc';
+        }
+        if (typeof localStorage.username === 'undefined') {
+            localStorage.username = '';
+        }
+        if (typeof localStorage.password === 'undefined') {
+            localStorage.password = '';
+        }
+        if (typeof localStorage.locations === 'undefined') {
+            localStorage.locations = '[]';
+        }
         
         localStorage.verConfig = 5;
     }
@@ -41,17 +49,16 @@ function Settings() {
 }
 
 Settings.prototype.getLocations = function() {
-	var locations = localStorage.locations
-			? JSON.parse(localStorage.locations)
-			: [];
+	var locations = localStorage.locations ? JSON.parse(localStorage.locations) : [];
 	var result = [];
 	var def = false;
-	for (var i = 0, location; location = locations[i]; ++i) {
-		def = def || location.path.toString() == '';
+	for (var i = 0, location; (location = locations[i]); ++i) {
+		def = def || location.path.toString() === '';
 		result.push(new Location(location.label, location.path));
 	}
-	if (!result.length || !def)
+	if (!result.length || !def) {
 		result.push(new Location('Default', ''));
+	}
 	return result;
 };
 
@@ -61,7 +68,7 @@ Settings.prototype.save = function() {
     localStorage.password = this.password;
     
     var locations = [];
-    for (var i = 0, location; location = this.locations[i]; ++i) {
+    for (var i = 0, location; (location = this.locations[i]); ++i) {
         locations.push({ label: location.getLabel(), path: location.getPath() });
     }
     localStorage.locations = JSON.stringify(locations);

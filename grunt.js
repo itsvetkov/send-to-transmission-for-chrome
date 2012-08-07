@@ -1,4 +1,4 @@
-/* global module:false */
+/*global module:false*/
 module.exports = function(grunt) {
     "use strict";
 
@@ -27,17 +27,18 @@ module.exports = function(grunt) {
                 quotmark: true,
                 regexp: true,
                 undef: true,
-                strict: true,
+                strict: false,
                 trailing: true,
                 
                 // boss: true,
-                // sub: true,
-                // eqnull: true,
+                sub: true,
+                eqnull: true,
                 
-                browser: true
+                browser: true,
+                jquery: true
             },
             globals: {}
-        },
+        }
     });
 
     // Default task.

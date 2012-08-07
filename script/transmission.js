@@ -78,15 +78,17 @@ Transmission.Error = function(status) {
  * @param {Function} callback
  */
 Transmission.prototype.callMethod = function(method, args, tag, callback) {
-    var data = {
-        method: method
-    };
+    var data = {};
+    
+    data['method'] = method;
 
-    if (args != null)
-        data.arguments = args;
+    if (args != null) {
+        data['arguments'] = args;
+    }
 
-    if (tag != null)
-        data.tag = tag;
+    if (tag != null) {
+        data['tag'] = tag;
+    }
 
     var self = this;
 
@@ -105,7 +107,7 @@ Transmission.prototype.callMethod = function(method, args, tag, callback) {
         error: function(jqXHR, textStatus, errorThrown) {
             var sid;
 
-            if (jqXHR.status == 409 && (sid = jqXHR.getResponseHeader('X-Transmission-Session-Id'))) {
+            if (jqXHR.status === 409 && (sid = jqXHR.getResponseHeader('X-Transmission-Session-Id'))) {
                 // Set the Transmission-Session-Id on a 409
                 self._sid = sid;
                 self.callMethod(method, args, tag, callback);
@@ -114,10 +116,12 @@ Transmission.prototype.callMethod = function(method, args, tag, callback) {
             }
         },
         success: function(data, textStatus, jqXHR) {
-            if (data && data.result && data.result == 'success')
-                callback(new Transmission.Success(data.arguments ? data.arguments : null));
-            else
-                callback(new Transmission.Failure(data.result ? data.result : ''));
+            if (data && data['result'] && data['result'] === 'success') {
+                callback(new Transmission.Success(data['arguments'] ? data['arguments'] : null));
+            }
+            else {
+                callback(new Transmission.Failure(data['result'] ? data['result'] : ''));
+            }
         }
     });
 };
@@ -133,16 +137,21 @@ Transmission.prototype.callMethod = function(method, args, tag, callback) {
 Transmission.customizeAddTorrent = function(path, paused, skip, high, low) {
     var args = {};
 
-    if (path)
+    if (path) {
         args['download-dir'] = path;
-    if (paused)
+    }
+    if (paused) {
         args['paused'] = paused;
-    if (skip)
+    }
+    if (skip) {
         args['files-unwanted'] = skip;
-    if (high)
+    }
+    if (high) {
         args['priority-high'] = high;
-    if (low)
+    }
+    if (low) {
         args['priority-low'] = low;
+    }
 
     return args;
 };
@@ -161,8 +170,9 @@ Transmission.prototype.addTorrentByArguments = function(args, callback) {
  * @param {Function} callback
  */
 Transmission.prototype.addTorrentByMagnet = function(url, args, callback) {
-    if (!args)
+    if (!args) {
         args = {};
+    }
 
     args['filename'] = url;
 
@@ -175,8 +185,9 @@ Transmission.prototype.addTorrentByMagnet = function(url, args, callback) {
  * @param {Function} callback
  */
 Transmission.prototype.addTorrentByMetaInfo = function(metainfo, args, callback) {
-    if (!args)
+    if (!args) {
         args = {};
+    }
 
     args['metainfo'] = metainfo;
 
