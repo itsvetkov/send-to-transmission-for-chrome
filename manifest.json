@@ -1,14 +1,20 @@
 {
-	"name" : "Download with Transmission",
-	"description" : "Add torrents to Transmission client",
-	"version" : "0.9",
-	"permissions" : ["contextMenus", "tabs", "http://*/", "https://*/"],
-	"background_page" : "background.html",
-	"options_page" : "options.html",
-	"icons" : {
-		"128" : "images/icon128.png",
-		"16" : "images/icon16.png",
-		"32" : "images/icon32.png",
-		"48" : "images/icon48.png"
-	}
+    "manifest_version": 2,
+    
+    "name": "Download with Transmission",
+    "description": "Add torrents to Transmission client",
+    "version": "0.9",
+    
+    "permissions": ["contextMenus", "tabs", "http://*/", "https://*/"],
+    
+    "background": {
+        "scripts": ["script/background.js"]
+    },
+    "options_page": "options.html",
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    }
 }
