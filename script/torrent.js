@@ -1,4 +1,4 @@
-/*global Bencode:false WebKitBlobBuilder:false*/
+/*global Bencode:false*/
 
 /**
  * @constructor

@@ -2,7 +2,7 @@
     "manifest_version": 2,
     
     "name": "Send to Transmission",
-    "description": "Simply send torrent files to remote Transmission server within few clicks",
+    "description": "Simply send torrent files to remote Transmission server within few clicks.",
     "version": "0.8",
     
     "permissions": ["contextMenus", "tabs", "http://*/", "https://*/"],

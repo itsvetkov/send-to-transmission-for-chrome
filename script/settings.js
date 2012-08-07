@@ -24,21 +24,21 @@ Location.prototype.getPath = function() {
 };
 
 function Settings() {
-    if (typeof localStorage.verConfig === 'undefined' || localStorage.verConfig < 5) {
-        if (typeof localStorage.server === 'undefined') {
+    if (localStorage.configVersion == null || localStorage.configVersion < 1) {
+        if (localStorage.server == null) {
             localStorage.server = 'http://localhost:9091/transmission/rpc';
         }
-        if (typeof localStorage.username === 'undefined') {
+        if (localStorage.username == null) {
             localStorage.username = '';
         }
-        if (typeof localStorage.password === 'undefined') {
+        if (localStorage.password == null) {
             localStorage.password = '';
         }
-        if (typeof localStorage.locations === 'undefined') {
+        if (localStorage.locations == null) {
             localStorage.locations = '[]';
         }
         
-        localStorage.verConfig = 5;
+        localStorage.configVersion = 1;
     }
     
     this.server = localStorage.server;

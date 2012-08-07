@@ -15,7 +15,7 @@
         }
     });
 
-    if (typeof localStorage.verConfig === 'undefined' || localStorage.verConfig < 5) {
+    if (localStorage.configVersion == null || localStorage.configVersion < 1) {
         chrome.tabs.create({
             url: 'options.html'
         });
