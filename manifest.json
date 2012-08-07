@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
     
-    "name": "Download with Transmission",
-    "description": "Add torrents to Transmission client",
-    "version": "0.9",
+    "name": "Send to Transmission",
+    "description": "Simply send torrent files to remote Transmission server within few clicks",
+    "version": "0.8",
     
     "permissions": ["contextMenus", "tabs", "http://*/", "https://*/"],
     

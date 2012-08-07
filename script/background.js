@@ -3,7 +3,7 @@
 (function() {
 
     chrome.contextMenus.create({
-        title: 'Download with Transmission',
+        title: 'Send to Transmission',
         contexts: ['link'],
         onclick: function(info, tab) {
             chrome.windows.create({
