@@ -8,7 +8,6 @@ function Torrent(url) {
     this._url = url;
     this._magnet = !!url.match(/^\s*magnet:/i);
     this._blob = null;
-    this._buffer = null;
     this._data = null;
 }
 
@@ -27,15 +26,12 @@ Torrent.prototype.getUrl = function() {
 Torrent.prototype.loadBlob = function(callback) {
     var request = new XMLHttpRequest();
     request.open('GET', this._url, true);
-    request.responseType = 'arraybuffer';
+    request.responseType = 'blob';
 
     var torrent = this;
     request.onload = function(event) {
         if (this.status === 200) {
-            torrent._buffer = this.response;
-            var blobBuilder = new WebKitBlobBuilder();
-            blobBuilder.append(this.response);
-            torrent._blob = blobBuilder.getBlob();
+            torrent._blob = this.response;
         }
         callback();
     };
