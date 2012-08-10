@@ -179,3 +179,25 @@ table.locations div.button.remove {
 table.locations div.button.remove:hover {
     background-image: url("../images/cross-hover.svg");
 }
+
+/* About info footer block */
+div.about {
+	width: 62.5em;
+	margin: 0 auto;
+	padding: 0.8em 1.25em;
+	text-align: right;
+	font-size: 80%;
+	color: gray;
+}
+
+div.about a {
+    color: #69f;
+}
+
+a[target="_blank"] {
+    padding-right: 1em;
+    background-image: url("../images/new-window.svg");
+    background-position: center right;
+    background-size: 0.8em 0.8em;
+    background-repeat: no-repeat;
+}

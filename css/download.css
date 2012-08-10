@@ -336,6 +336,36 @@ div.controls>button {
     margin-left: 0.5em;
 }
 
+/* Feedback button */
+div.controls>div.about {
+	float: left;
+	line-height: 2.5em;
+	font-size: 80%;
+}
+
+div.controls>div.about a {
+    position: relative;
+    z-index: 1;
+	display: inline-block;
+    height: 1.6em;
+    padding-right: 1.8em;
+    padding-left: 1.5em;
+    margin-left: -1.5em;
+    line-height: 1.6em;
+    background-color: #69f;
+    background-image: url("../images/new-window-button.svg");
+    background-position: center right;
+    background-size: 1.6em 0.8em;
+    background-repeat: no-repeat;
+    color: white;
+    border-top-right-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+}
+
+div.controls>div.about a:hover {
+    background-color: #c6f;
+}
+
 /* Modal block */
 #modal {
     position: fixed;
