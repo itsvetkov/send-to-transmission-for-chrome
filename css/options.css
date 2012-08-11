@@ -1,203 +1,203 @@
 @charset "utf-8";
 
 dl.attributes.options {
-    width: 50em;
-    margin: 0 auto;
-    padding: 1em;
-    border-radius: 0.8em;
-    background-color: whitesmoke;
+	width: 50em;
+	margin: 0 auto;
+	padding: 1em;
+	border-radius: 0.8em;
+	background-color: whitesmoke;
 }
 
 dl.attributes.options>dt {
-    width: 9em;
-    line-height: 1.5em;
+	width: 9em;
+	line-height: 1.5em;
 }
 
 dl.attributes.options>dd {
-    margin-left: 10em;
-    margin-bottom: 0.5em;
-    line-height: 1.5em;
+	margin-left: 10em;
+	margin-bottom: 0.5em;
+	line-height: 1.5em;
 }
 
 /* Transmission Session Info */
 dl.attributes.options>dd.unavailable {
-    color: grey;
+	color: grey;
 }
 
 /* Buttons */
 dl.attributes.options>dd:last-child {
-    margin-top: 1em;
-    margin-bottom: 0;
+	margin-top: 1em;
+	margin-bottom: 0;
 }
 
 dl.attributes.options>dd:last-child div#message-container {
-    margin: 1.2em 19.5em 0.2em 0;
+	margin: 1.2em 19.5em 0.2em 0;
 }
 
 dl.attributes.options>dd:last-child div#message {
-    height: 1.6em;
-    padding: 0 0.8em;
-    line-height: 1.6em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-radius: 0.8em;
+	height: 1.6em;
+	padding: 0 0.8em;
+	line-height: 1.6em;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-radius: 0.8em;
 }
 
 .show {
-    opacity: 1.0;
-    -webkit-transition: opacity 0.2s;
+	opacity: 1.0;
+	-webkit-transition: opacity 0.2s;
 }
 
 .hide {
-    opacity: 0.0;
-    -webkit-transition: opacity 0.5s ease 5s;
+	opacity: 0.0;
+	-webkit-transition: opacity 0.5s ease 5s;
 }
 
 .success {
-    color: white;
-    background-color: olivedrab;
+	color: white;
+	background-color: olivedrab;
 }
 
 .failure {
-    color: white;
-    background-color: indianred;
+	color: white;
+	background-color: indianred;
 }
 
 dl.attributes.options>dd:last-child div.buttons {
-    float: right;
-    margin-top: -0.2em;
-    z-index: 1;
+	float: right;
+	margin-top: -0.2em;
+	z-index: 1;
 }
 
 dl.attributes.options>dd:last-child button {
-    width: 6em;
-    margin-left: 0.5em;
+	width: 6em;
+	margin-left: 0.5em;
 }
 
 #server {
-    width: 40em;
+	width: 40em;
 }
 
 #username,#password {
-    width: 10em;
+	width: 10em;
 }
 
 table.locations {
-    margin: 0;
-    padding: 0;
-    border-collapse: collapse;
-    line-height: 1.5em;
-    width: 100%;
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	line-height: 1.5em;
+	width: 100%;
 }
 
 table.locations>colgroup>col:first-child {
-    width: 10.5em;
+	width: 10.5em;
 }
 
 table.locations>colgroup>col:last-child {
-    width: 5.5em;
+	width: 5.5em;
 }
 
 table.locations th,table.locations td {
-    padding: 0;
-    padding-right: 0.5em;
+	padding: 0;
+	padding-right: 0.5em;
 }
 
 table.locations th:last-child,table.locations td:last-child {
-    padding-right: 0;
+	padding-right: 0;
 }
 
 table.locations th {
-    text-align: left;
-    font: inherit;
-    padding-bottom: 0.5em;
+	text-align: left;
+	font: inherit;
+	padding-bottom: 0.5em;
 }
 
 table.locations>tbody>tr>td {
-    padding-bottom: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 table.locations input {
-    width: 100%;
+	width: 100%;
 }
 
 table.locations div.button {
-    cursor: pointer;
-    display: block;
-    margin: 0;
-    margin-left: 0.5em;
-    padding: 0;
-    width: 1.5em;
-    height: 1.5em;
-    float: left;
-    background-size: 1em 1em;
-    background-repeat: no-repeat;
-    background-position: 0.25em 0.25em;
+	cursor: pointer;
+	display: block;
+	margin: 0;
+	margin-left: 0.5em;
+	padding: 0;
+	width: 1.5em;
+	height: 1.5em;
+	float: left;
+	background-size: 1em 1em;
+	background-repeat: no-repeat;
+	background-position: 0.25em 0.25em;
 }
 
 table.locations div.button:first-child {
-    margin-left: 0em;
+	margin-left: 0em;
 }
 
 table.locations div.button.add {
-    background-image: url("../images/check.svg");
+	background-image: url("../images/check.svg");
 }
 
 table.locations div.button.add:hover {
-    background-image: url("../images/check-hover.svg");
+	background-image: url("../images/check-hover.svg");
 }
 
 table.locations div.button.up {
-    background-image: url("../images/arrow-up.svg");
+	background-image: url("../images/arrow-up.svg");
 }
 
 table.locations>tbody>tr:first-child div.button.up {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 table.locations div.button.up:hover {
-    background-image: url("../images/arrow-up-hover.svg");
+	background-image: url("../images/arrow-up-hover.svg");
 }
 
 table.locations div.button.down {
-    background-image: url("../images/arrow-down.svg");
+	background-image: url("../images/arrow-down.svg");
 }
 
 table.locations>tbody>tr:last-child div.button.down {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 table.locations div.button.down:hover {
-    background-image: url("../images/arrow-down-hover.svg");
+	background-image: url("../images/arrow-down-hover.svg");
 }
 
 table.locations div.button.remove {
-    background-image: url("../images/cross.svg");
+	background-image: url("../images/cross.svg");
 }
 
 table.locations div.button.remove:hover {
-    background-image: url("../images/cross-hover.svg");
+	background-image: url("../images/cross-hover.svg");
 }
 
 /* About info footer block */
 div.about {
-    width: 62.5em;
-    margin: 0 auto;
-    padding: 0.8em 1.25em;
-    text-align: right;
-    font-size: 80%;
-    color: gray;
+	width: 62.5em;
+	margin: 0 auto;
+	padding: 0.8em 1.25em;
+	text-align: right;
+	font-size: 80%;
+	color: gray;
 }
 
 div.about a {
-    color: #69f;
+	color: #69f;
 }
 
 a[target="_blank"] {
-    padding-right: 1em;
-    background-image: url("../images/new-window.svg");
-    background-position: center right;
-    background-size: 0.8em 0.8em;
-    background-repeat: no-repeat;
+	padding-right: 1em;
+	background-image: url("../images/new-window.svg");
+	background-position: center right;
+	background-size: 0.8em 0.8em;
+	background-repeat: no-repeat;
 }
