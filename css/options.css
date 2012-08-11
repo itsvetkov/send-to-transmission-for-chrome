@@ -182,12 +182,12 @@ table.locations div.button.remove:hover {
 
 /* About info footer block */
 div.about {
-	width: 62.5em;
-	margin: 0 auto;
-	padding: 0.8em 1.25em;
-	text-align: right;
-	font-size: 80%;
-	color: gray;
+    width: 62.5em;
+    margin: 0 auto;
+    padding: 0.8em 1.25em;
+    text-align: right;
+    font-size: 80%;
+    color: gray;
 }
 
 div.about a {

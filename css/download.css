@@ -103,8 +103,7 @@ dl.tabs>dt:hover {
     padding: 0;
 }
 
-#filelist-container ul>li>label span,#filelist-header span,#filelist-footer span
-    {
+#filelist-container ul>li>label span,#filelist-header span,#filelist-footer span {
     display: block;
     margin: 0;
     padding: 0;
@@ -120,8 +119,7 @@ dl.tabs>dt:hover {
     width: 1.8em;
 }
 
-#filelist-container ul>li>label span.check input,#filelist-header span.check input
-    {
+#filelist-container ul>li>label span.check input,#filelist-header span.check input {
     display: block;
     margin: 0;
     width: 100%;
@@ -159,8 +157,7 @@ dl.tabs>dt:hover {
 }
 
 /* #filelist-container ul>li>label span.name,#filelist-header span.name,#filelist-footer span.name {} */
-#filelist-container ul>li>label span.size,#filelist-header span.size,#filelist-footer span.size
-    {
+#filelist-container ul>li>label span.size,#filelist-header span.size,#filelist-footer span.size {
     float: right;
     width: 10.5em;
     text-align: right;
@@ -171,15 +168,13 @@ dl.tabs>dt:hover {
     width: 15.5em;
 }
 
-#filelist-container ul>li.directory>label span.files,#filelist-header span.files,#filelist-footer span.files
-    {
+#filelist-container ul>li.directory>label span.files,#filelist-header span.files,#filelist-footer span.files {
     float: left;
     width: 5em;
     text-align: right;
 }
 
-#filelist-container ul>li>label span.symbol,#filelist-header span.symbol,#filelist-footer span.symbol
-    {
+#filelist-container ul>li>label span.symbol,#filelist-header span.symbol,#filelist-footer span.symbol {
     float: right;
     margin-left: 0.5em;
     width: 3em;
@@ -321,8 +316,7 @@ dl.attributes.parameters>dd:last-child {
     margin-bottom: 1em;
 }
 
-dl.attributes.parameters>dd>input[type=text],dl.attributes.parameters>dd>select
-    {
+dl.attributes.parameters>dd>input[type=text],dl.attributes.parameters>dd>select {
     width: 100%;
 }
 
@@ -338,15 +332,15 @@ div.controls>button {
 
 /* Feedback button */
 div.controls>div.about {
-	float: left;
-	line-height: 2.5em;
-	font-size: 80%;
+    float: left;
+    line-height: 2.5em;
+    font-size: 80%;
 }
 
 div.controls>div.about a {
     position: relative;
     z-index: 1;
-	display: inline-block;
+    display: inline-block;
     height: 1.6em;
     padding-right: 1.8em;
     padding-left: 1.5em;
