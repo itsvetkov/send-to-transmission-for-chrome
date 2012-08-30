@@ -771,7 +771,7 @@ PageController.prototype.addTorrent = function(torrent, paused) {
                                             window.close();
                                         }]);
         }
-        else if (result instanceof Transmission.Failure && result === 'duplicate torrent') {
+        else if (result instanceof Transmission.Failure && result.toString() === 'duplicate torrent') {
             controller.showModalMessage('Duplicate torrent', 'This torrent has been already added to Transmission.',
                                         'error', ['close'], [function() {
                                             window.close();

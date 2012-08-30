@@ -143,7 +143,7 @@ var ElementProxy = (function() {
     };
 
     function CustomPath(element, label, path) {
-        var args = arguments;
+        var args = Array.prototype.slice.call(arguments, 0);
         
         if (args[0] == null) {
             args[0] = template['custom'].cloneNode(true);
