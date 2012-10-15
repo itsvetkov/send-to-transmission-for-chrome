@@ -582,7 +582,7 @@ function PageController() {
     this._fileTreeController = new FileTreeController();
     this._locationsController = new LocationsController();
 
-    this._transmission = new Transmission(this._settings.server, this._settings.usename, this._settings.password);
+    this._transmission = new Transmission(this._settings.server, this._settings.username, this._settings.password);
 
     var locations = this._settings.locations;
     for ( var i = 0, location; (location = locations[i]); ++i) {

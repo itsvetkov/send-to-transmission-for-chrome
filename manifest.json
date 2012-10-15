@@ -3,7 +3,7 @@
 	
 	"name": "Send to Transmission",
 	"description": "Simply send torrent files to remote Transmission server within few clicks.",
-	"version": "0.8.0.2",
+	"version": "0.8.0.3",
 	
 	"permissions": ["contextMenus", "tabs", "http://*/", "https://*/"],
 	
